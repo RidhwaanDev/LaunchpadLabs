@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
 import com.ridhwaan.Launchpad.Adapters.CourseGridAdapter;
 import com.ridhwaan.Launchpad.CourseManager.CourseManager;
+import com.ridhwaan.Launchpad.Firebase.FirebaseInit;
 import com.ridhwaan.hazratmp3.R;
 
 /**
@@ -38,6 +40,17 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        FirebaseInit firebaseHandler = new FirebaseInit();
+        DatabaseReference databaseReference = firebaseHandler.createRef("Courses");
+        firebaseHandler.addEntry(databaseReference," Programming ");
+        firebaseHandler.addEntry(databaseReference," Robotics ");
+        firebaseHandler.addEntry(databaseReference," SAT Prep ");
+        firebaseHandler.addEntry(databaseReference," Debate ");
+        firebaseHandler.addEntry(databaseReference," High school Math ");
+
+
 
         //check for permission
 
