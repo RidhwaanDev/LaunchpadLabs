@@ -1,0 +1,81 @@
+
+
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:clickable="true"
+
+
+    >
+
+
+    <android.support.v7.widget.CardView
+        android:visibility="visible"
+        android:id="@+id/card_view_data"
+        android:elevation="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="#FFFF"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+
+        <RelativeLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:text="Programming"
+                android:id="@+id/course_title"
+                android:padding="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/course_content"
+                android:textColor="@color/colorAccent"
+                android:text="Learning the fundamental building blocks of computing- coding. Learn the basics, or advanced applications of coding languages such as C#, Java, C++. Explore the heights that you can reach through coding, ranging from basic applications to app design for the Apple Store, Google Play Store, or even the Amazon Alexa. "
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:layout_below="@+id/course_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="14dp" />
+
+            <ImageView
+                android:id="@+id/background_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
