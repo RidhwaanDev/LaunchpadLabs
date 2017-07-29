@@ -48,7 +48,7 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_player, container, false);
+        View v = inflater.inflate(R.layout.fragment_manager, container, false);
 
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);

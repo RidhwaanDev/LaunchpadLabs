@@ -29,7 +29,7 @@ public class SoundControllerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-                View v = inflater.inflate(R.layout.fragment_soundcontroller_layout,container,false);
+                View v = inflater.inflate(R.layout.fragment_detailcourse_layout,container,false);
 
 
 

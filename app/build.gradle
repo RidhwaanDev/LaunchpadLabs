@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "23.0.3"
     defaultConfig {
-        applicationId "com.ridhwaan.hazratmp3"
+        applicationId "com.ridhwaan.Launchpad"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1

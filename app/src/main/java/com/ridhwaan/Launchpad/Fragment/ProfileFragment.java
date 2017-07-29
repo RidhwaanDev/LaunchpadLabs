@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_drive_access,container,false);
+        View v = inflater.inflate(R.layout.fragment_login,container,false);
 
 
 

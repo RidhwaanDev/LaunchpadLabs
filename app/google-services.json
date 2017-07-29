@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "728179653416",
+    "firebase_url": "https://launchpadlabs-79871.firebaseio.com",
+    "project_id": "launchpadlabs-79871",
+    "storage_bucket": "launchpadlabs-79871.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728179653416:android:63758aac590cee14",
+        "android_client_info": {
+          "package_name": "com.ridhwaan.Launchpad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728179653416-5i1cb6ebqujgct59872r4gteq3b8k6je.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ridhwaan.Launchpad",
+            "certificate_hash": "766fe5001dbfaea8eced75d75327ef020bf1e1eb"
+          }
+        },
+        {
+          "client_id": "728179653416-nqoj2h9kgbf0jlbd14ipa2cb7bpva5co.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIRFbYUELckQJO_BFj66uwIf5VvyLAWT8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728179653416-nqoj2h9kgbf0jlbd14ipa2cb7bpva5co.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
