@@ -43,16 +43,14 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
 
 
         FirebaseInit firebaseHandler = new FirebaseInit();
-        DatabaseReference databaseReference = firebaseHandler.createRef("Courses");
-        firebaseHandler.addEntry(databaseReference," Programming ");
-        firebaseHandler.addEntry(databaseReference," Robotics ");
-        firebaseHandler.addEntry(databaseReference," SAT Prep ");
-        firebaseHandler.addEntry(databaseReference," Debate ");
-        firebaseHandler.addEntry(databaseReference," High school Math ");
+        DatabaseReference courseReference = firebaseHandler.createRef("Courses");
+        firebaseHandler.addEntry(courseReference," Programming ");
+        firebaseHandler.addEntry(courseReference," Robotics ");
+        firebaseHandler.addEntry(courseReference," SAT Prep ");
+        firebaseHandler.addEntry(courseReference," Debate ");
+        firebaseHandler.addEntry(courseReference," High school Math ");
 
 
-
-        //check for permission
 
 
 

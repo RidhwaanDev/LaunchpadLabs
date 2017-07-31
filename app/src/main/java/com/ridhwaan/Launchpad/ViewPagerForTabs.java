@@ -28,11 +28,9 @@ public class ViewPagerForTabs extends FragmentPagerAdapter {
         switch (position){
 
             case 0:
-                CourseFragment playerFragment = new CourseFragment();
-                return playerFragment;
+                return new CourseFragment();
             case 1:
-                ProfileFragment profileFragment = new ProfileFragment();
-                return profileFragment;
+                return new ProfileFragment();
             default:
                 return null;
 
