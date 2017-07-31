@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 
-import com.ridhwaan.Launchpad.Fragment.SoundControllerFragment;
+import com.ridhwaan.Launchpad.Fragment.GeneralController;
 import com.ridhwaan.Launchpad.SingleFragmentActivity;
 
 /**
@@ -17,7 +17,7 @@ public class CourseDetailActivity extends SingleFragmentActivity {
 
     @Override
     public Fragment createFragment() {
-        return  SoundControllerFragment.newInstance();
+        return  GeneralController.newInstance();
     }
 
     public static Intent newInstance (Context packageContext){
