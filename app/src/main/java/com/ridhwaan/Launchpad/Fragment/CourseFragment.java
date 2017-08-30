@@ -1,5 +1,6 @@
 package com.ridhwaan.Launchpad.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -12,9 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
+import com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity;
 import com.ridhwaan.Launchpad.Adapters.CourseGridAdapter;
 import com.ridhwaan.Launchpad.CourseManager.CourseManager;
-import com.ridhwaan.Launchpad.Firebase.FirebaseInit;
+import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
 import com.ridhwaan.hazratmp3.R;
 
 /**
@@ -23,12 +25,10 @@ import com.ridhwaan.hazratmp3.R;
 
 public class CourseFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-
-
-
-
     private RecyclerView mRecyclerView;
     private CourseGridAdapter courseGridAdapter;
+
+    public static final String COURSE_DESCRIPTOR_KEY = "1001";
 
 
 
@@ -42,15 +42,6 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
         super.onCreate(savedInstanceState);
 
 
-        FirebaseInit firebaseHandler = new FirebaseInit();
-        DatabaseReference courseReference = firebaseHandler.createRef("Courses");
-        firebaseHandler.addEntry(courseReference," Programming ");
-        firebaseHandler.addEntry(courseReference," Robotics ");
-        firebaseHandler.addEntry(courseReference," SAT Prep ");
-        firebaseHandler.addEntry(courseReference," Debate ");
-        firebaseHandler.addEntry(courseReference," High school Math ");
-
-
 
 
 
@@ -61,8 +52,8 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_manager, container, false);
 
-
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
+        //mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
@@ -71,7 +62,12 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
             @Override
             public void onCourseClicked(String course) {
 
-                Toast.makeText(getActivity(),course,Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), CourseDescriptionActivity.class);
+                Bundle args = new Bundle();
+                args.putString(COURSE_DESCRIPTOR_KEY,course);
+                i.putExtras(args);
+                getActivity().startActivity(i);
+
 
             }
         });

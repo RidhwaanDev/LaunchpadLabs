@@ -16,5 +16,5 @@ import android.widget.Button;
 
 public class GeneralController extends Fragment {
 
-    
+
 }

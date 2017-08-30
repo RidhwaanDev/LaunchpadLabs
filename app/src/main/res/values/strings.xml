@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Launchpad Lab</string>
+    <string name="course_programming">
+        "Overview \n
+This introductory chapter aims to build enthusiasm and an “I can do it” attitude that should carry them for the rest of the course. This chapter sets the tone of the course with engaging hands on activities that students should look forward to. The lasting impact of this course should be to develop a creative problem solving attitude- a lens that seeks to tackle problems in the real world with a step by step method.
+The structure of this chapter opens with an exciting activity that encourages involvement and interaction from students. To further challenge them, the second phase increases the complexity of the activity to further reflect a real life situation.
+Each lesson concludes with a reflection- a question/answer session where students are asked to analyze the activity using deductive reasoning- first starting from the specific lessons they learn and the challenges they had to overcome, and then to perhaps apply those ideas to their experiences in the real world. For example, in the same way that they experienced miscommunication in the game of telephone, they may have experienced miscommunication when relaying a message to someone at home.
+"
+    </string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.ridhwaan.Launchpad.Firebase;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -7,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by Ridhwaan on 7/29/17.
  */
 
-public class FirebaseInit {
+public class FireBaseManager {
 
 
 
@@ -25,9 +26,18 @@ public class FirebaseInit {
     }
 
     public void addEntry(DatabaseReference reference, String value){
-
         reference.push().setValue(value);
 
+    }
+
+    public void addModelEntry(DatabaseReference reference, Object obj){
+        reference.push().setValue(obj);
+    }
+
+    public void addUser( FireBaseUserModel user){
+
+        DatabaseReference ref = getDataBase().getReference().child("Users");
+        addModelEntry(ref, user);
 
 
     }

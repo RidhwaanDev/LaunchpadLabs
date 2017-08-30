@@ -20,14 +20,7 @@ import com.ridhwaan.hazratmp3.R;
 
 public class ProfileFragment extends Fragment {
 
-    private FirebaseAuth mFireBaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
-    private Button mAddAcntBtn;
-
-
-
-    private static final int RC_AUTH_FLOW = 1001;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,60 +33,12 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_login,container,false);
-
-        mFireBaseAuth = FirebaseAuth.getInstance();
-
-
-        mAddAcntBtn = (Button) v.findViewById(R.id.add_account_btn);
-
-
-
-                mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
-                        if(user != null){
-
-                            //login flow
-                        } else{
-                            //sign in flow
-                            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
-                                    .setProviders(AuthUI.EMAIL_PROVIDER,AuthUI.GOOGLE_PROVIDER)
-                                    .setIsSmartLockEnabled(false)
-                                    .build(),RC_AUTH_FLOW);
-
-                        }
-                    }
-                };
-
-
-
-
-
-
+        View v = inflater.inflate(R.layout.fragment_profile, null , false);
 
         return v;
-            }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mFireBaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mFireBaseAuth.removeAuthStateListener(mAuthStateListener);
     }
 }
 

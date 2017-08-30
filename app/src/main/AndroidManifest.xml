@@ -13,8 +13,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Launchpad Lab"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        >
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.ridhwaan.Launchpad.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,11 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ridhwaan.Launchpad.Activities.EntryPoint"></activity>
-        <activity android:name="com.ridhwaan.Launchpad.Activities.CourseDetailActivity" />
-        <activity android:name="com.ridhwaan.Launchpad.Activities.ProfileActivity"></activity>
-        <activity android:name="com.ridhwaan.Launchpad.Activities.CourseActivity"></activity>
-
+        <activity android:name="com.ridhwaan.Launchpad.Activities.EntryPoint" />
+        <activity android:name="com.ridhwaan.Launchpad.Activities.ProfileActivity" />
+        <activity android:name="com.ridhwaan.Launchpad.Activities.CourseActivity" />
+        <activity
+            android:name="com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
