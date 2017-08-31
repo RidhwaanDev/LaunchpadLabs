@@ -1,20 +1,38 @@
 package com.ridhwaan.Launchpad.Firebase;
 
 import com.ridhwaan.Launchpad.model.CourseModel;
+import com.ridhwaan.Launchpad.model.CourseModelStore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * Created by Ridhwaan on 8/29/17.
  */
 
-public class FireBaseUserModel {
+public class FireBaseUserModel implements Serializable {
 
     private String mUserName;
     private String mEmail;
     private String mPhoneNumber;
-    private ArrayList<CourseModel> mCourseList;
+    private HashMap<String,CourseModel> mCourseList;
     private int mClassesCompleted;
+    private UUID mID;
+
+    public HashMap<String, CourseModel> getmCourseList() {
+        return mCourseList;
+    }
+
+    public void setmCourseList(HashMap<String, CourseModel> mCourseList) {
+        this.mCourseList = mCourseList;
+    }
+
+    public FireBaseUserModel(){
+        mID = UUID.randomUUID();
+    }
+
 
     public String getmUserName() {
         return mUserName;
@@ -40,19 +58,24 @@ public class FireBaseUserModel {
         this.mPhoneNumber = mPhoneNumber;
     }
 
-    public ArrayList<CourseModel> getmCourseList() {
-        return mCourseList;
-    }
-
-    public void setmCourseList(ArrayList<CourseModel> mCourseList) {
-        this.mCourseList = mCourseList;
-    }
-
     public int getmClassesCompleted() {
         return mClassesCompleted;
     }
 
     public void setmClassesCompleted(int mClassesCompleted) {
         this.mClassesCompleted = mClassesCompleted;
+    }
+
+    public void addCourse(String course, CourseModel courseModel){
+
+        if(mCourseList == null){
+            mCourseList = new HashMap<>();
+        }
+
+        mCourseList.put(course,courseModel);
+    }
+
+    public UUID getmID() {
+        return mID;
     }
 }

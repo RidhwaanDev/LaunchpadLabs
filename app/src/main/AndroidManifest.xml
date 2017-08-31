@@ -11,7 +11,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Launchpad Lab"
+        android:label="Launchify"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.ridhwaan.Launchpad.Activities.LoginActivity">
@@ -26,6 +26,10 @@
         <activity android:name="com.ridhwaan.Launchpad.Activities.CourseActivity" />
         <activity
             android:name="com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.ridhwaan.Launchpad.Activities.NavigationDrawer"
+            android:label="@string/title_activity_navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

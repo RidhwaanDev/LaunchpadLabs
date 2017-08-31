@@ -1,8 +1,15 @@
 package com.ridhwaan.Launchpad.Firebase;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ridhwaan.Launchpad.model.CourseModel;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Created by Ridhwaan on 7/29/17.
@@ -11,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FireBaseManager {
 
 
+    DatabaseReference ref = getDataBase().getReference().child("Users");
 
     public static FirebaseDatabase getDataBase(){
         FirebaseDatabase  fbdb = FirebaseDatabase.getInstance();
@@ -31,17 +39,38 @@ public class FireBaseManager {
     }
 
     public void addModelEntry(DatabaseReference reference, Object obj){
-        reference.push().setValue(obj);
+
+        if(obj instanceof  FireBaseUserModel) {
+
+            FireBaseUserModel userModel = ((FireBaseUserModel) obj);
+            reference.child(userModel.getmID().toString()).setValue(obj);
+            DatabaseReference subRef = reference.child(userModel.getmID().toString()).child("Course Ref");
+
+        }
+
+        if(obj instanceof CourseModel){
+            CourseModel courseModel = ((CourseModel) obj);
+            reference.setValue(courseModel);
+        }
     }
 
     public void addUser( FireBaseUserModel user){
 
-        DatabaseReference ref = getDataBase().getReference().child("Users");
         addModelEntry(ref, user);
-
-
     }
 
+    public void updateUserCourseList(String id, String where, HashMap<String,Object> updateCourseList){
 
+        DatabaseReference ref = getDataBase().getReference().child("Users").child(id).child(where);
+        ref.updateChildren(updateCourseList);
+    }
+
+    public void addCourse( CourseModel course,Context c){
+
+        FireBaseSession session = FireBaseSession.getInstance(c);
+
+        DatabaseReference ref = getDataBase().getReference().child("Users").child(session.getSession().getmID().toString());
+        addModelEntry(ref, course);
+    }
 
 }

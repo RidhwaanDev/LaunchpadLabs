@@ -3,6 +3,7 @@ package com.ridhwaan.Launchpad.Firebase;
 import android.content.Context;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.ridhwaan.Launchpad.model.CourseModel;
 
 /**
  * Created by Ridhwaan on 8/29/17.
@@ -11,7 +12,11 @@ import com.google.firebase.auth.FirebaseUser;
 public class FireBaseSession {
 
     private static FireBaseSession mSession;
-    private FireBaseUserModel mUserModel;
+    private FireBaseUserModel mCurrentUser;
+    private static FireBaseManager mFireBaseManager;
+
+
+    //test
 
 
 
@@ -25,17 +30,26 @@ public class FireBaseSession {
     }
 
     private FireBaseSession (Context c){
-        mUserModel = new FireBaseUserModel();
+         mCurrentUser = new FireBaseUserModel();
+        mFireBaseManager = new FireBaseManager();
 
     }
 
-    public FireBaseUserModel getSession(FirebaseUser user){
+    public void setSession(FirebaseUser user){
 
-        mUserModel.setmUserName(user.getDisplayName());
-        mUserModel.setmEmail(user.getEmail());
-        
-        return mUserModel;
+         mCurrentUser.setmUserName(user.getDisplayName());
+         mCurrentUser.setmEmail(user.getEmail());
 
+    }
+
+    public FireBaseUserModel getSession(){
+
+        return  mCurrentUser;
+
+    }
+
+    public FireBaseManager getmFireBaseManager (){
+        return mFireBaseManager;
     }
 
    

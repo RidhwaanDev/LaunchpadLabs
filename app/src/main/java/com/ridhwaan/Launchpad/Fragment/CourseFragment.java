@@ -29,7 +29,7 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
     private CourseGridAdapter courseGridAdapter;
 
     public static final String COURSE_DESCRIPTOR_KEY = "1001";
-
+    public static final String CONTEXT = "1002";
 
 
     public static CourseFragment newInstance() {
@@ -42,9 +42,6 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
         super.onCreate(savedInstanceState);
 
 
-
-
-
     }
 
     @Nullable
@@ -53,7 +50,6 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
         View v = inflater.inflate(R.layout.fragment_manager, container, false);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
-        //mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 

@@ -11,9 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
+import com.ridhwaan.Launchpad.Firebase.FireBaseSession;
+import com.ridhwaan.Launchpad.Firebase.FireBaseUserModel;
 import com.ridhwaan.Launchpad.Fragment.CourseFragment;
 import com.ridhwaan.Launchpad.SingleFragmentActivity;
+import com.ridhwaan.Launchpad.model.CourseModel;
 import com.ridhwaan.hazratmp3.R;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class CourseDescriptionActivity extends AppCompatActivity {
 
@@ -48,8 +55,25 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                final FireBaseSession session = FireBaseSession.getInstance(CourseDescriptionActivity.this);
+                FireBaseUserModel userModel = session.getSession();
+
+                CourseModel courseModel = new CourseModel();
+                courseModel.setmCourseContent("Programming is very fun oh my god");
+                courseModel.setmCourseInstructorEmail("uthman@gmail.com");
+                courseModel.setmCourseInstructorName("Uthy the Puthy");
+                courseModel.setmCourseTitle("Programming 101 w/ C#");
+
+                userModel.addCourse("Programming", courseModel);
+
+                HashMap<String,Object> updatedCourseMap = new HashMap<>();
+                updatedCourseMap.put(COURSE_TITLE, courseModel);
+
+                FireBaseManager manager = session.getmFireBaseManager();
+                manager.updateUserCourseList(userModel.getmID().toString(),"mCourseList", updatedCourseMap);
+                Snackbar.make()
+
             }
         });
     }

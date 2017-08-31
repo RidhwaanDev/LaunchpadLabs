@@ -14,6 +14,8 @@ import com.ridhwaan.Launchpad.Firebase.FireBaseInit;
 import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
 import com.ridhwaan.Launchpad.Firebase.FireBaseSession;
 import com.ridhwaan.Launchpad.Firebase.FireBaseUserModel;
+import com.ridhwaan.Launchpad.model.CourseModel;
+import com.ridhwaan.Launchpad.model.CourseModelStore;
 
 /**
  * Created by Ridhwaan on 7/30/17.
@@ -41,11 +43,22 @@ public class LoginActivity extends AppCompatActivity {
 
                     FireBaseInit.init();
 
-                    FireBaseSession session = FireBaseSession.getInstance(LoginActivity.this);
-                    FireBaseUserModel userModel = session.getSession(user);
+                    final FireBaseSession session = FireBaseSession.getInstance(LoginActivity.this);
+                    session.setSession(user);
+                    FireBaseUserModel userModel = session.getSession();
 
-                    FireBaseManager manager = new FireBaseManager();
+                    CourseModel courseModel = new CourseModel();
+                    courseModel.setmCourseContent("Heh");
+                    courseModel.setmCourseInstructorEmail("uthman@gmail.com");
+                    courseModel.setmCourseInstructorName("Uthman");
+                    courseModel.setmCourseTitle("SAT");
+
+                    userModel.addCourse("Programming", courseModel);
+
+                    FireBaseManager manager = session.getmFireBaseManager();
                     manager.addUser(userModel);
+
+
 
                     Intent intent = new Intent(LoginActivity.this, EntryPoint.class);
                     startActivity(intent);
