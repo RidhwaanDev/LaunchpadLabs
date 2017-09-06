@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity;
@@ -39,7 +40,7 @@ public class CourseFragment extends Fragment {
     private int count = 0;
     private int datacnt;
 
-    private static Bus bus;
+    private static Bus bus,proflebus;
 
     public static final String COURSE_DESCRIPTOR_KEY = "1001";
     public static final String CONTEXT = "1002";
@@ -72,13 +73,17 @@ public class CourseFragment extends Fragment {
                         isComplete = true;
                         bus.post(isComplete);
                     } else {
-                        CourseModel c = data.getValue(CourseModel.class);
-                        Log.d("Iter test", "    " + c.getmCourseTitle());
-                        bus.post(c);
+
+                        try{
+
+                            CourseModel c = data.getValue(CourseModel.class);
+                            Log.d("Iter test", "    " + c.getmCourseTitle());
+                            bus.post(c);
+                        } catch (DatabaseException e) {
+                            continue;
+                        }
                     }
-
                 }
-
         }
 
         @Override
@@ -96,6 +101,9 @@ public class CourseFragment extends Fragment {
     @Subscribe public void onDownloadComplete(Boolean e){
 
         Log.d("Iter test", "    " + e.toString() +  "   " + list.size());
+
+        ProfileFragment.sendData(list);
+
 
         if(e.booleanValue()){
             courseGridAdapter = new CourseGridAdapter(getActivity(), list);
@@ -115,9 +123,7 @@ public class CourseFragment extends Fragment {
                     getActivity().startActivity(i);
                 }
             });
-
         }
-
     }
 
     @Nullable

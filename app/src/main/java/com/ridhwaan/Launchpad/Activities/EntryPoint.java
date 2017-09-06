@@ -1,5 +1,6 @@
 package com.ridhwaan.Launchpad.Activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -25,6 +26,8 @@ public class EntryPoint extends AppCompatActivity {
         setContentView(R.layout.activity_tabbed);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.tabs);

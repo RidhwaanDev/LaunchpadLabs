@@ -8,11 +8,7 @@ android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:clickable="true"
-
-
     >
-
-
     <android.support.v7.widget.CardView
         android:visibility="visible"
         android:id="@+id/card_view_data"
@@ -36,7 +32,7 @@ android:clickable="true"
             >
 
             <TextView
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorToolBar"
                 android:text="Programming"
                 android:id="@+id/course_title"
                 android:padding="4dp"
@@ -50,7 +46,7 @@ android:clickable="true"
 
             <TextView
                 android:id="@+id/course_content"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorToolBar"
                 android:text="Learning the fundamental building blocks of computing- coding. Learn the basics, or advanced applications of coding languages such as C#, Java, C++. Explore the heights that you can reach through coding, ranging from basic applications to app design for the Apple Store, Google Play Store, or even the Amazon Alexa. "
                 android:padding="4dp"
                 android:layout_marginLeft="16dp"
