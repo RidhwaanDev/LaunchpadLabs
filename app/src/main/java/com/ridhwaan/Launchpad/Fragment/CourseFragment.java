@@ -35,7 +35,7 @@ public class CourseFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private CourseGridAdapter courseGridAdapter;
     private ArrayList<CourseModel> list;
-    private boolean isComplete = false;
+    private Boolean isComplete;
     private int count = 0;
     private int datacnt;
 
@@ -59,10 +59,11 @@ public class CourseFragment extends Fragment {
         FireBaseManager fireBaseManager = new FireBaseManager();
         DatabaseReference ref = fireBaseManager.getCourseRef();
 
-    ref.addValueEventListener(new ValueEventListener() {
+         ref.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
                 datacnt = (int) dataSnapshot.getChildrenCount();
+            isComplete = new Boolean(false);
 
                 Iterable<DataSnapshot> itr = dataSnapshot.getChildren();
                 for(DataSnapshot data: itr){
@@ -78,8 +79,6 @@ public class CourseFragment extends Fragment {
 
                 }
 
-
-
         }
 
         @Override
@@ -94,10 +93,18 @@ public class CourseFragment extends Fragment {
         list.add(c);
     }
 
-    @Subscribe public void onDownloadComplete(boolean e){
+    @Subscribe public void onDownloadComplete(Boolean e){
 
-        if(e){
+        Log.d("Iter test", "    " + e.toString() +  "   " + list.size());
+
+        if(e.booleanValue()){
             courseGridAdapter = new CourseGridAdapter(getActivity(), list);
+            courseGridAdapter.notifyDataSetChanged();
+            mRecyclerView.setAdapter(courseGridAdapter);
+
+
+            // TODO: 9/5/17 Change FireBaseManager to singelton ASAP
+
             courseGridAdapter.setOnCourseClickListener(new CourseGridAdapter.OnCourseclickListener() {
                 @Override
                 public void onCourseClicked(CourseModel course) {
@@ -108,6 +115,7 @@ public class CourseFragment extends Fragment {
                     getActivity().startActivity(i);
                 }
             });
+
         }
 
     }
@@ -119,9 +127,10 @@ public class CourseFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        // TODO: 9/5/17 Change FireBaseManager to singelton ASAP
-        mRecyclerView.setAdapter(courseGridAdapter);
+
         return v;
     }
+
+    // TODO: update list
 
 }

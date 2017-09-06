@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
 import com.ridhwaan.Launchpad.Firebase.FireBaseSession;
@@ -24,8 +25,9 @@ import java.util.Objects;
 
 public class CourseDescriptionActivity extends AppCompatActivity {
 
-    private String COURSE_TITLE;
+    private CourseModel course;
     private TextView mContentTextView;
+    private String mCourseTitle;
 
 
 
@@ -43,12 +45,13 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         if(i.getExtras() != null){
 
             Bundle args = i.getExtras();
-            COURSE_TITLE =  (String) args.get(CourseFragment.COURSE_DESCRIPTOR_KEY);
+            course =  (CourseModel) args.getSerializable(CourseFragment.COURSE_DESCRIPTOR_KEY);
+            mCourseTitle = course.getmCourseTitle();
 
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(COURSE_TITLE);
+        toolbar.setTitle(course.getmCourseTitle());
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -68,10 +71,13 @@ public class CourseDescriptionActivity extends AppCompatActivity {
                 userModel.addCourse("Programming", courseModel);
 
                 HashMap<String,Object> updatedCourseMap = new HashMap<>();
-                updatedCourseMap.put(COURSE_TITLE, courseModel);
+                updatedCourseMap.put( mCourseTitle, courseModel);
 
                 FireBaseManager manager = session.getmFireBaseManager();
                 manager.updateUserCourseList(userModel.getmID().toString(),"mCourseList", updatedCourseMap);
+
+                Toast.makeText(CourseDescriptionActivity.this, course.getmCourseTitle() + " " + "has been added to your course list", Toast.LENGTH_SHORT)
+                        .show();
 
 
             }
