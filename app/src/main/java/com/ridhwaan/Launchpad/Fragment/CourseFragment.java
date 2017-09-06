@@ -40,7 +40,8 @@ public class CourseFragment extends Fragment {
     private int count = 0;
     private int datacnt;
 
-    private static Bus bus,proflebus;
+    private static Bus bus;
+    public static Bus profileBus;
 
     public static final String COURSE_DESCRIPTOR_KEY = "1001";
     public static final String CONTEXT = "1002";
@@ -50,10 +51,15 @@ public class CourseFragment extends Fragment {
         return new CourseFragment();
     }
 
+    public static void registerBus(Object o ){
+        profileBus.register(o);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bus = new Bus(ThreadEnforcer.MAIN);
+        profileBus = new Bus(ThreadEnforcer.MAIN);
         bus.register(this);
         list = new ArrayList<>();
 
@@ -102,8 +108,7 @@ public class CourseFragment extends Fragment {
 
         Log.d("Iter test", "    " + e.toString() +  "   " + list.size());
 
-        ProfileFragment.sendData(list);
-
+        profileBus.post(list);
 
         if(e.booleanValue()){
             courseGridAdapter = new CourseGridAdapter(getActivity(), list);

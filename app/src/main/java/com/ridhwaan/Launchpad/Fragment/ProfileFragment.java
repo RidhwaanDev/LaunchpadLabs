@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.ridhwaan.Launchpad.Adapters.CourseProfileAdapter;
 import com.ridhwaan.Launchpad.model.CourseModel;
 import com.ridhwaan.hazratmp3.R;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CourseFragment.registerBus(this);
     }
 
     public static Fragment newInstance() {
@@ -51,15 +54,20 @@ public class ProfileFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mProfileCourseRecyclerView.setLayoutManager(layoutManager);
 
-        mCourseProfileAdapter = new CourseProfileAdapter(getActivity(),dataset);
-
-        mProfileCourseRecyclerView.setAdapter(mCourseProfileAdapter);
-
         return v;
     }
 
-    public static void sendData(ArrayList<CourseModel> courseModel){
-            dataset = courseModel;
+    @Subscribe public void getData(ArrayList<CourseModel> list)
+    {
+
+        dataset = list;
+
+
+        mCourseProfileAdapter = new CourseProfileAdapter(getActivity(),dataset);
+        mProfileCourseRecyclerView.setAdapter(mCourseProfileAdapter);
+
+
+
     }
 
 
