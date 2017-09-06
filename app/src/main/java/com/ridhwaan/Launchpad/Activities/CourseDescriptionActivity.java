@@ -72,7 +72,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
                 FireBaseManager manager = session.getmFireBaseManager();
                 manager.updateUserCourseList(userModel.getmID().toString(),"mCourseList", updatedCourseMap);
-                Snackbar.make()
+
 
             }
         });

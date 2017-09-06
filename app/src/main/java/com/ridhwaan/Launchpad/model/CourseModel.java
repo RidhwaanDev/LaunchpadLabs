@@ -1,10 +1,12 @@
 package com.ridhwaan.Launchpad.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Ridhwaan on 8/1/17.
  */
 
-public class CourseModel  {
+public class CourseModel implements Serializable {
 
     private String mCourseTitle;
     private String mCourseInstructorName;
@@ -43,4 +45,6 @@ public class CourseModel  {
     public void setmCourseContent(String mCourseContent) {
         this.mCourseContent = mCourseContent;
     }
+
+
 }

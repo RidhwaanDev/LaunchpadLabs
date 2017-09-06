@@ -8,7 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.ridhwaan.Launchpad.Fragment.CourseFragment;
+import com.ridhwaan.Launchpad.model.CourseModel;
 import com.ridhwaan.hazratmp3.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ridhwaan on 3/19/2017.
@@ -17,60 +24,46 @@ import com.ridhwaan.hazratmp3.R;
 public class CourseGridAdapter extends RecyclerView.Adapter<CourseHolder> {
 
     private Context mContext;
-    public static  String[] dataSet;
+    public static ArrayList<CourseModel> mDataSet;
     public static OnCourseclickListener mClickListener;
 
 
     public interface OnCourseclickListener{
 
-        void onCourseClicked(String course);
+        void onCourseClicked(CourseModel courseModel);
     }
 
     public void setOnCourseClickListener(OnCourseclickListener listener){
-
         mClickListener = listener;
-
     }
 
-
-    public CourseGridAdapter(Context context, String[] dataSet){
-
+    public CourseGridAdapter(Context context,  ArrayList<CourseModel> listOfItems){
         this.mContext = context;
-        this.dataSet = dataSet;
+        this.mDataSet = listOfItems ;
     }
 
     @Override
     public CourseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.course_item,parent,false);
         return new CourseHolder(v,mContext);
-
-
-
     }
 
     @Override
     public void onBindViewHolder(CourseHolder holder, int position) {
-        String course = dataSet[position];
-        holder.bindHolder(course,position);
-
+        CourseModel courseModel = mDataSet.get(position);
+        holder.bindHolder(courseModel,position);
     }
-
 
     @Override
     public int getItemCount() {
-        return dataSet.length;
+        return mDataSet.size();
     }
-
-
-
 }
-
    class CourseHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
        private int position;
-       private String course;
+       private CourseModel course;
        private TextView mTitleView;
        private TextView mContentView;
        private Context c = null;
@@ -81,23 +74,18 @@ public class CourseGridAdapter extends RecyclerView.Adapter<CourseHolder> {
         mContentView = (TextView) itemView.findViewById(R.id.course_content);
         itemView.setOnClickListener(this);
         this.c = c;
-
     }
 
     @Override
     public void onClick(View view) {
         //// TODO: 3/19/2017 update player manager
         Log.d("TAG", "ITEM CLICK");
-        CourseGridAdapter.mClickListener. onCourseClicked(course);
-
+        CourseGridAdapter.mClickListener.onCourseClicked(course);
     }
 
-
-    public void bindHolder(String courseName, int position){
-        mTitleView.setText(courseName);
+    public void bindHolder(CourseModel courseModel, int position){
+        mTitleView.setText(courseModel.getmCourseTitle());
         this.position = position;
-        this.course = CourseGridAdapter.dataSet[position];
+        this.course = CourseGridAdapter.mDataSet.get(position);
     }
-
-
 }

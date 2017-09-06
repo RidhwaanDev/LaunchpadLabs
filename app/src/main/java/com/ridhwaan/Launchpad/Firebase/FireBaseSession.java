@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.ridhwaan.Launchpad.model.CourseModel;
+import com.squareup.otto.Bus;
 
 /**
  * Created by Ridhwaan on 8/29/17.
@@ -14,11 +15,7 @@ public class FireBaseSession {
     private static FireBaseSession mSession;
     private FireBaseUserModel mCurrentUser;
     private static FireBaseManager mFireBaseManager;
-
-
-    //test
-
-
+    public static Bus bus;
 
     public static FireBaseSession getInstance(Context c){
 
@@ -26,12 +23,12 @@ public class FireBaseSession {
             mSession = new FireBaseSession(c);
         }
             return mSession;
-
     }
 
     private FireBaseSession (Context c){
          mCurrentUser = new FireBaseUserModel();
         mFireBaseManager = new FireBaseManager();
+        bus = new Bus();
 
     }
 
@@ -50,6 +47,14 @@ public class FireBaseSession {
 
     public FireBaseManager getmFireBaseManager (){
         return mFireBaseManager;
+    }
+
+    public void publishEvent(Object object){
+        bus.post(object);
+    }
+
+    public void registerEvent(Object object){
+        bus.register(object);
     }
 
    

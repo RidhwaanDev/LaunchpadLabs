@@ -3,44 +3,112 @@ package com.ridhwaan.Launchpad.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity;
 import com.ridhwaan.Launchpad.Adapters.CourseGridAdapter;
-import com.ridhwaan.Launchpad.CourseManager.CourseManager;
 import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
+import com.ridhwaan.Launchpad.model.CourseModel;
 import com.ridhwaan.hazratmp3.R;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+import com.squareup.otto.ThreadEnforcer;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Ridhwaan on 3/4/2017.
  */
 
-public class CourseFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class CourseFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private CourseGridAdapter courseGridAdapter;
+    private ArrayList<CourseModel> list;
+    private boolean isComplete = false;
+    private int count = 0;
+    private int datacnt;
+
+    private static Bus bus;
 
     public static final String COURSE_DESCRIPTOR_KEY = "1001";
     public static final String CONTEXT = "1002";
 
 
     public static CourseFragment newInstance() {
-
         return new CourseFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bus = new Bus(ThreadEnforcer.MAIN);
+        bus.register(this);
+        list = new ArrayList<>();
 
+        FireBaseManager fireBaseManager = new FireBaseManager();
+        DatabaseReference ref = fireBaseManager.getCourseRef();
+
+    ref.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+                datacnt = (int) dataSnapshot.getChildrenCount();
+
+                Iterable<DataSnapshot> itr = dataSnapshot.getChildren();
+                for(DataSnapshot data: itr){
+                    count++;
+                    if( count >= datacnt){
+                        isComplete = true;
+                        bus.post(isComplete);
+                    } else {
+                        CourseModel c = data.getValue(CourseModel.class);
+                        Log.d("Iter test", "    " + c.getmCourseTitle());
+                        bus.post(c);
+                    }
+
+                }
+
+
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    });
+
+    }
+
+    @Subscribe public void onCourseRecieved(CourseModel c){
+        list.add(c);
+    }
+
+    @Subscribe public void onDownloadComplete(boolean e){
+
+        if(e){
+            courseGridAdapter = new CourseGridAdapter(getActivity(), list);
+            courseGridAdapter.setOnCourseClickListener(new CourseGridAdapter.OnCourseclickListener() {
+                @Override
+                public void onCourseClicked(CourseModel course) {
+                    Intent i = new Intent(getActivity(), CourseDescriptionActivity.class);
+                    Bundle args = new Bundle();
+                    args.putSerializable(COURSE_DESCRIPTOR_KEY, course);
+                    i.putExtras(args);
+                    getActivity().startActivity(i);
+                }
+            });
+        }
 
     }
 
@@ -51,28 +119,9 @@ public class CourseFragment extends Fragment implements ActivityCompat.OnRequest
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        courseGridAdapter = new CourseGridAdapter(getActivity(), CourseManager.courses);
-        courseGridAdapter.setOnCourseClickListener(new CourseGridAdapter.OnCourseclickListener() {
-            @Override
-            public void onCourseClicked(String course) {
-
-                Intent i = new Intent(getActivity(), CourseDescriptionActivity.class);
-                Bundle args = new Bundle();
-                args.putString(COURSE_DESCRIPTOR_KEY,course);
-                i.putExtras(args);
-                getActivity().startActivity(i);
-
-
-            }
-        });
+        // TODO: 9/5/17 Change FireBaseManager to singelton ASAP
         mRecyclerView.setAdapter(courseGridAdapter);
-
-
         return v;
     }
-
-
 
 }
