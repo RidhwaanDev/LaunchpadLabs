@@ -24,7 +24,6 @@
             <TextView
                 android:layout_gravity="center"
                 android:layout_marginTop="72dp"
-                android:text="Ridhwaan Anayetullah"
                 android:textColor="#FFFF"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"

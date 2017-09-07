@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ridhwaan.Launchpad.model.ChatMessageModel;
 import com.ridhwaan.Launchpad.model.CourseModel;
 import com.squareup.otto.Bus;
 
@@ -59,6 +60,12 @@ public class FireBaseManager {
         }
     }
 
+
+    public void addChatMessage(ChatMessageModel msg){
+        DatabaseReference ref = getDataBase().getReference().child("Chat");
+        ref.push().setValue(msg);
+    }
+
     public void addUser( FireBaseUserModel user){
 
         addModelEntry(ref, user);
@@ -77,13 +84,15 @@ public class FireBaseManager {
         ref.updateChildren(course);
     }
 
-    public static ArrayList<CourseModel> recieveData(ArrayList<CourseModel> list){
-        return list;
-    }
 
 
     public DatabaseReference getCourseRef(){
         DatabaseReference ref = getDataBase().getReference().child("Courses");
+        return ref;
+    }
+
+    public DatabaseReference getChatRef(){
+        DatabaseReference ref = getDataBase().getReference().child("Chat");
         return ref;
     }
 

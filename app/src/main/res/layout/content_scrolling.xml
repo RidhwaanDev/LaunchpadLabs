@@ -8,11 +8,81 @@
     tools:context="com.ridhwaan.Launchpad.Activities.CourseDescriptionActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <TextView
-        android:id="@+id/course_description"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-       />
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:text="Overview"
+            android:textSize="18dp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorToolBar"
+            android:id="@+id/course_content"
+            android:text="BAH BLAH BLAH BLAH LBLALDL SDML MSLNGJFDNG KNFDKJG NKJERNG KJDNF    FDG JNDFKGN KRJDNG KJDFNG KJNDFKJGN DFKJGN KFDJNG KJRN GKJNKRDN"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="41dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/wm" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_marginLeft="8dp"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructor"
+                    android:textColor="@color/colorToolBar"
+                    android:textStyle="bold"
+                    />
+                
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Uthman Qureshi"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorToolBar"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </android.support.v4.widget.NestedScrollView>

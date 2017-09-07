@@ -32,6 +32,7 @@ public class EntryPoint extends AppCompatActivity {
 
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.tabs);
 
+
         mViewPagerForTabs = new ViewPagerForTabs(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mViewPagerForTabs);

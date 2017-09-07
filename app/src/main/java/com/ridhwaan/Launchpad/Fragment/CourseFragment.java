@@ -80,14 +80,11 @@ public class CourseFragment extends Fragment {
                         bus.post(isComplete);
                     } else {
 
-                        try{
 
                             CourseModel c = data.getValue(CourseModel.class);
                             Log.d("Iter test", "    " + c.getmCourseTitle());
                             bus.post(c);
-                        } catch (DatabaseException e) {
-                            continue;
-                        }
+
                     }
                 }
         }
@@ -138,7 +135,6 @@ public class CourseFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         return v;
     }
 

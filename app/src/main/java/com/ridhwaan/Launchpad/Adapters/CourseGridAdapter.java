@@ -59,6 +59,7 @@ public class CourseGridAdapter extends RecyclerView.Adapter<CourseHolder> {
     public int getItemCount() {
         return mDataSet.size();
     }
+
 }
    class CourseHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

@@ -27,11 +27,13 @@ public class FireBaseInit {
             HashMap<String,Object> map = new HashMap<>();
             map.put( c.getmCourseTitle() , c);
 
-            firebaseHandler.addNewCourse( map );
+            firebaseHandler.addNewCourse(map);
         }
 
 
         DatabaseReference userReference = firebaseHandler.createRef("Users");
+        DatabaseReference chatReference = firebaseHandler.createRef("Users");
+
 
 
     }

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -16,6 +17,7 @@ import com.ridhwaan.Launchpad.Firebase.FireBaseSession;
 import com.ridhwaan.Launchpad.Firebase.FireBaseUserModel;
 import com.ridhwaan.Launchpad.model.CourseModel;
 import com.ridhwaan.Launchpad.model.CourseModelStore;
+import com.ridhwaan.hazratmp3.R;
 
 /**
  * Created by Ridhwaan on 7/30/17.
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
+
         mFireBaseAuth = FirebaseAuth.getInstance();
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -69,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
                             .setProviders(AuthUI.EMAIL_PROVIDER,AuthUI.GOOGLE_PROVIDER)
                             .setIsSmartLockEnabled(false)
+                            .setLogo(R.drawable.splash_screen_logo)
                             .build(),RC_AUTH_FLOW);
 
                 }

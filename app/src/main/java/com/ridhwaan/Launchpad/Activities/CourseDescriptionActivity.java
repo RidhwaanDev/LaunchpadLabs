@@ -37,8 +37,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
 
         View v = findViewById(R.id.content_view);
-        mContentTextView =  (TextView) v.findViewById(R.id.course_description);
-        mContentTextView.setText(R.string.course_programming);
+        mContentTextView =  (TextView) v.findViewById(R.id.course_content);
 
 
         Intent i = getIntent();
