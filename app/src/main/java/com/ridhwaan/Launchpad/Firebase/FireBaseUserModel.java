@@ -1,10 +1,8 @@
 package com.ridhwaan.Launchpad.Firebase;
 
 import com.ridhwaan.Launchpad.model.CourseModel;
-import com.ridhwaan.Launchpad.model.CourseModelStore;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 

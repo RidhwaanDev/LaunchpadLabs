@@ -7,16 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.ridhwaan.Launchpad.Firebase.FireBaseInit;
 import com.ridhwaan.Launchpad.Firebase.FireBaseManager;
 import com.ridhwaan.Launchpad.Firebase.FireBaseSession;
 import com.ridhwaan.Launchpad.Firebase.FireBaseUserModel;
 import com.ridhwaan.Launchpad.model.CourseModel;
-import com.ridhwaan.Launchpad.model.CourseModelStore;
 import com.ridhwaan.hazratmp3.R;
 
 /**

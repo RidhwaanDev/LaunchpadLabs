@@ -70,13 +70,14 @@ class ChatHolder extends RecyclerView.ViewHolder {
     private FireBaseUserModel user;
     private TextView mUserNameTextView;
     private TextView mMessageTextView;
+    private boolean isDeveloper;
 
     public ChatHolder(View itemView) {
         super(itemView);
         mUserNameTextView = (TextView) itemView.findViewById(R.id.tv_chat_name_id);
         mMessageTextView = (TextView) itemView.findViewById(R.id.tv_chat_message);
 
-        int[] colors = {Color.RED,Color.YELLOW,Color.BLACK,Color.BLACK,Color.CYAN};
+        int[] colors = {Color.RED,Color.BLACK,Color.BLACK,Color.CYAN};
         Random rand = new Random();
         mUserNameTextView.setTextColor(colors[rand.nextInt(5)]);
 
@@ -85,6 +86,7 @@ class ChatHolder extends RecyclerView.ViewHolder {
     public void bindView(ChatMessageModel msg,FireBaseUserModel user){
         this.msg = msg;
         this.user = user;
+        
         mUserNameTextView.setText(msg.getName());
         mMessageTextView.setText(msg.getContent());
 
