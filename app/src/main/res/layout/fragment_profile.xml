@@ -17,7 +17,7 @@
                 android:layout_width="96dp"
                 android:layout_height="96dp"
                 android:layout_gravity="center"
-                android:src="@drawable/profile_pic"
+                android:src="@drawable/splash_screen_logo"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@color/colorToolBar"/>
 
@@ -36,7 +36,6 @@
     <TextView
         android:text="My Courses"
         android:textSize="32dp"
-        android:textStyle="bold"
         android:textColor= "@color/colorToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

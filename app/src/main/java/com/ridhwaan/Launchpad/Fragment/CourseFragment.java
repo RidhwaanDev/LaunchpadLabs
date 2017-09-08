@@ -70,7 +70,7 @@ public class CourseFragment extends Fragment {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
                 datacnt = (int) dataSnapshot.getChildrenCount();
-            isComplete = new Boolean(false);
+                isComplete = new Boolean(false);
 
                 Iterable<DataSnapshot> itr = dataSnapshot.getChildren();
                 for(DataSnapshot data: itr){
@@ -110,6 +110,7 @@ public class CourseFragment extends Fragment {
         if(e.booleanValue()){
             courseGridAdapter = new CourseGridAdapter(getActivity(), list);
             courseGridAdapter.notifyDataSetChanged();
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             mRecyclerView.setAdapter(courseGridAdapter);
 
 
@@ -134,7 +135,6 @@ public class CourseFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_manager, container, false);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_player);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
     }
 

@@ -41,19 +41,16 @@ android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="32dp"
-                android:textStyle="bold"
                 />
 
             <TextView
                 android:id="@+id/course_content"
                 android:textColor="@color/colorToolBar"
-                android:text="Learning the fundamental building blocks of computing- coding. Learn the basics, or advanced applications of coding languages such as C#, Java, C++. Explore the heights that you can reach through coding, ranging from basic applications to app design for the Apple Store, Google Play Store, or even the Amazon Alexa. "
                 android:padding="4dp"
                 android:layout_marginLeft="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:textStyle="bold"
+                android:textSize="24dp"
                 android:layout_below="@+id/course_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="14dp" />

@@ -57,6 +57,11 @@ public class ChatFragment extends Fragment {
         mSendMsgButton = (Button) v.findViewById(R.id.btn_send);
 
         mChatAdapter = new ChatAdapter(getActivity(), userModel);
+        ChatMessageModel msgJustEntered = new ChatMessageModel();
+        msgJustEntered.setName("System");
+        msgJustEntered.setContent(userName + "  " + "has joined");
+
+        mChatAdapter.addMessage(msgJustEntered);
 
         mSendMsgButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,16 +80,16 @@ public class ChatFragment extends Fragment {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatMessageModel msg = dataSnapshot.getValue(ChatMessageModel.class);
-
-                if(!(msg.getName() == userModel.getmUserName())){
+                    ChatMessageModel msg = dataSnapshot.getValue(ChatMessageModel.class);
+                    String name = msg.getName();
+                    if(name != userName){
                     mChatAdapter.addMessage(msg);
-                }
+                    }
+
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
 
 
             }
@@ -120,7 +125,15 @@ public class ChatFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        ChatMessageModel msg = new ChatMessageModel();
+        msg.setName("System");
+        msg.setContent("User(Unknown) left");
+        mChatAdapter.addMessage(msg);
 
     }
 }

@@ -86,6 +86,7 @@ public class CourseGridAdapter extends RecyclerView.Adapter<CourseHolder> {
 
     public void bindHolder(CourseModel courseModel, int position){
         mTitleView.setText(courseModel.getmCourseTitle());
+        mContentView.setText(courseModel.getmCourseContent());
         this.position = position;
         this.course = CourseGridAdapter.mDataSet.get(position);
     }

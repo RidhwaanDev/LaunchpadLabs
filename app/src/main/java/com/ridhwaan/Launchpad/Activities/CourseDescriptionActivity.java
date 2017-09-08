@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
     private CourseModel course;
     private TextView mContentTextView;
     private String mCourseTitle;
+    private ImageButton mSendEmailButton;
 
 
 
@@ -38,6 +41,17 @@ public class CourseDescriptionActivity extends AppCompatActivity {
 
         View v = findViewById(R.id.content_view);
         mContentTextView =  (TextView) v.findViewById(R.id.course_content);
+        mSendEmailButton = (ImageButton) v.findViewById(R.id.ib_email_instructor);
+        mSendEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, "uthman.aq@gmail.com");
+                startActivity(Intent.createChooser(intent," Send Email To Instructor"));
+
+            }
+        });
 
 
         Intent i = getIntent();
@@ -48,6 +62,8 @@ public class CourseDescriptionActivity extends AppCompatActivity {
             mCourseTitle = course.getmCourseTitle();
 
         }
+
+        mContentTextView.setText(course.getmCourseContent());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(course.getmCourseTitle());
@@ -64,7 +80,7 @@ public class CourseDescriptionActivity extends AppCompatActivity {
                 CourseModel courseModel = new CourseModel();
                 courseModel.setmCourseContent("Programming is very fun oh my god");
                 courseModel.setmCourseInstructorEmail("uthman@gmail.com");
-                courseModel.setmCourseInstructorName("Uthy the Puthy");
+                courseModel.setmCourseInstructorName("Uthy");
                 courseModel.setmCourseTitle("Programming 101 w/ C#");
 
                 userModel.addCourse("Programming", courseModel);

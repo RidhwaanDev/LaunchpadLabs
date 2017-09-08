@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseApp.initializeApp(this);
 
         mFireBaseAuth = FirebaseAuth.getInstance();
 

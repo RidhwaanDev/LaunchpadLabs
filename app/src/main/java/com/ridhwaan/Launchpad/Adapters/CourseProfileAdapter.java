@@ -52,17 +52,20 @@ public class CourseProfileAdapter extends RecyclerView.Adapter<CourseProfileHold
 class CourseProfileHolder extends RecyclerView.ViewHolder{
 
     private TextView mTitleOfCourse;
+    private TextView mContentTextView;
     private CourseModel mCourseModel;
     private int position;
 
     public CourseProfileHolder(View itemView, Context c ) {
         super(itemView);
         mTitleOfCourse = (TextView) itemView.findViewById(R.id.course_title);
+        mContentTextView = (TextView) itemView.findViewById(R.id.course_content);
     }
 
 
     public void bindHolder(CourseModel courseModel, int position){
         mTitleOfCourse.setText(courseModel.getmCourseTitle());
+        mContentTextView.setText(courseModel.getmCourseContent());
         this.position = position;
         this.mCourseModel = CourseProfileAdapter.mCourseList.get(position);
     }

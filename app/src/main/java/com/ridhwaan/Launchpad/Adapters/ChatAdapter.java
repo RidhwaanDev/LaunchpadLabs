@@ -85,7 +85,7 @@ class ChatHolder extends RecyclerView.ViewHolder {
     public void bindView(ChatMessageModel msg,FireBaseUserModel user){
         this.msg = msg;
         this.user = user;
-        mUserNameTextView.setText(user.getmUserName());
+        mUserNameTextView.setText(msg.getName());
         mMessageTextView.setText(msg.getContent());
 
 
